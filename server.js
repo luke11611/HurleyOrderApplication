@@ -7,7 +7,7 @@ const BodyParser = require("body-parser");
 const ObjectId = require("mongodb").ObjectID;
 const mongoose  = require('mongoose');
 const { createServer } = require( 'http');
-const port = 3000;
+const port = process.env.PORT || 3000;
 //var Schema = mongoose.Schema;
 //var hurley = require('./models/hurleys');
 
