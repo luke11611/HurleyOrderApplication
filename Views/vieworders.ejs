@@ -1,0 +1,41 @@
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>View Orders</title>
+
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+</head>
+
+<body>
+  <h1> Display Orders Here </h1>
+  <% if(hurleys.length>0) { %>
+  <table border="1">
+          <tr>
+                  <th>Order Number</th>
+                  <th>Style</th>
+                  <th>Size</th>
+                  <th>Weight</th>
+                  <th>Quantity</th>
+
+          </tr>
+           <% for(var i=0; i<hurleys.length;i++) { %>
+                  <tr>
+                    <td><%= i %></td>
+                    <td><%= hurleys[i].hurleystyle %></td>
+                    <td><%= hurleys[i].hurleysize %></td>
+                    <td><%= hurleys[i].hurleyweight %></td>
+                    <td><%= hurleys[i].hurleyquantity %></td>
+                  </tr>
+                     <% } %>
+
+  </table>
+  <% } else { %>
+          No Record Found
+        <% } %>
+</body>
+</html>
