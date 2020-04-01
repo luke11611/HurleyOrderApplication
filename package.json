@@ -21,6 +21,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "chmod -R +x node_modules/next/dist/bin/next-* && npm run build",
     "start": "node server.js"
   },
   "author": "",
