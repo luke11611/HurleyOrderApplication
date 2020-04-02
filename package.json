@@ -1,6 +1,12 @@
 {
   "name": "lukepackage",
-  "engines" : { "node" : ">=0.12" },
+  "engines": {
+    "node": ">=0.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/hurley-order-application.git"
+  },
   "version": "1.0.0",
   "main": "server.js",
   "dependencies": {
@@ -15,16 +21,16 @@
     "mongoose": "^5.9.6",
     "morgan": "^1.9.1",
     "nodegit": "^0.26.5",
+    "npm-lifecycle": "^3.1.5",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "chmod -R +x node_modules/next/dist/bin/next-* && npm run build",
     "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "Hurley Order Application"
 }
