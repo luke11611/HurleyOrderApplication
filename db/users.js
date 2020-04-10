@@ -3,7 +3,7 @@ var records = [
   , { id: 2, username: 'jill', password: 'birthday', displayName: 'Jill', emails: [ { value: 'jill@example.com' } ] }
 ];
 
-/*
+
 exports.findById = function(id, cb) {
   process.nextTick(function() {
     var idx = id - 1;
@@ -13,9 +13,7 @@ exports.findById = function(id, cb) {
     console.log("Error");
     }
   });
-}*/
-
-
+}
 
 exports.findByUsername = function(username, cb) {
   process.nextTick(function() {

@@ -8,17 +8,19 @@ const ObjectId = require("mongodb").ObjectID;
 const mongoose  = require('mongoose');
 const { createServer } = require( 'http');
 const port = process.env.PORT || 3000;
-  //  var popup = require('popups');
+const compression = require('compression');
+//  var popup = require('popups');
 
 // Create a new Express application.
 var app = express();
+app.use(compression());
 
 mongoose.connect ('mongodb+srv://Luke100:Luke100@clusterhurleyapp-ucfnz.mongodb.net/HurleyOrder?retryWrites=true&w=majority', {
   useNewUrlParser: true,
 },
 )
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+  //.then(() => console.log('MongoDB Connected'))
+//  .catch(err => console.log(err));
 
 
 // const Hurley = mongoose.model('Hurley', UserSchema);
@@ -83,7 +85,7 @@ function(req, res, next) {
  let weight = req.body.hurleyweightDROP;
  let quantity = req.body.hurleyquantityDROP;
 
-    console.log("Created Order for " + name + " " + style + " " + weight +  " " + quantity);
+//    console.log("Created Order for " + name + " " + style + " " + weight +  " " + quantity);
 //    res.render('home');
 
       Hurley.create({
@@ -134,4 +136,4 @@ app.get('/vieworders', require('connect-ensure-login').ensureLoggedIn(), functio
       res.render('404');
     });
 
-app.listen(3000);
+app.listen(port);
