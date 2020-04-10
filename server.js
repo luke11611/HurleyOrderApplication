@@ -8,8 +8,7 @@ const ObjectId = require("mongodb").ObjectID;
 const mongoose  = require('mongoose');
 const { createServer } = require( 'http');
 const port = process.env.PORT || 3000;
-//var Schema = mongoose.Schema;
-//var hurley = require('./models/hurleys');
+  //  var popup = require('popups');
 
 // Create a new Express application.
 var app = express();
@@ -22,50 +21,9 @@ mongoose.connect ('mongodb+srv://Luke100:Luke100@clusterhurleyapp-ucfnz.mongodb.
   .catch(err => console.log(err));
 
 
-/*
-  const UserSchema = new Schema({
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-  });
-  */
-
 // const Hurley = mongoose.model('Hurley', UserSchema);
 const Hurley = require('./models/Hurleys');
 
-/*
-  // Database example
-  app.get('/',
-    function(req, res) {
-    Hurley.create({
-        name: 'Denis',
-        email:'test@email',
-      })
-      .then(user => res.send(user))
-      .catch(err => res.send(err));
-
-  //    Hurley.find()
-    //  .then(user => res.send(user))
-      //.catch(err => res.send(err));
-    });*/
-
-//  const server = createServer(app);
-  //server.listen(port, () => console.log('Listening to port ${port}'));
-
-
-/*
-const uri = "mongodb+srv://Luke100:hurleyApplication@clusterhurleyapp-ucfnz.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});*/
 
 
 // Configure the local strategy for use by Passport.
@@ -140,23 +98,6 @@ function(req, res, next) {
             res.redirect('/');
     });
 
-//OLD LOGIN PAGE
-//app.get('/login',
-  //function(req, res){
-    //res.render('login');
-//  });
-
-//app.post('/login',
-  //passport.authenticate('local', { failureRedirect: '/' }),
-  //function(req, res) {
-    //res.redirect('/');
-//  });
-
-//homepage LogIn
-//BRING BACK AFTER DATABSE EXAMPLE
-
-
-
 app.post('/home',
   passport.authenticate('local', { failureRedirect: '/' }),
   function(req, res) {
@@ -181,27 +122,6 @@ app.get('/profile',
   });
 
 
-
-/*
-  app.get('/orders',
-    require('connect-ensure-login').ensureLoggedIn(),
-      function(req, res) {
-         let name = req.user.username;
-
-    Hurley.findOne( {name: name })
-       .then(user => res.send(user))
-       .catch(err => res.send(err));
-
-    });
-
-    app.get('/orders', require('connect-ensure-login').ensureLoggedIn(), function(req, res) {
-          let name = req.user.username;
-          Hurley.find(function(err, hurleys) {
-             res.render('vieworders', { hurleys: hurleys});
-          });
-    });{name: 'jill'},
-    */
-
 app.get('/vieworders', require('connect-ensure-login').ensureLoggedIn(), function(req, res) {
           Hurley.find({name: req.user.username},function(err, hurleys) {
           res.render('vieworders', { user: req.user, hurleys: hurleys});
@@ -209,43 +129,9 @@ app.get('/vieworders', require('connect-ensure-login').ensureLoggedIn(), functio
       });
 });
 
-
-  //    let name = req.user.username;
-  //    require('connect-ensure-login').ensureLoggedIn(),
-
-    //  Hurley.find (function(err, res) {
-        // res.render('vieworders', { user: req.user , hurleys: hurleys});
-    //    res.render('vieworders', { hurleys: hurleys});
-    //    console.log(hurleys);
-    //  }
-//  });
-
-/*
-    app.get("/orders",
-    require('connect-ensure-login').ensureLoggedIn(),
-      function(req, res) {
-
-      let name = req.user.username;
-
-    var myData = Hurley.findOne( {name: name })
-    .then(item => {res.send(myData);
-    })
-    .catch(err => {
-        res.status(400).send("Unable to get");
-    });
-});*/
-/*
-  app.get('/orders',
-    require('connect-ensure-login').ensureLoggedIn(),
-    function(req, res){
-      res.render('orders', { user: req.user });
-    });*/
-
   app.get('/*',
     function(req, res){
       res.render('404');
     });
 
 app.listen(3000);
-//const server = createServer(app);
-//server.listen(port, () => console.log('Listening to port ${port}'));
